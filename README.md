@@ -10,7 +10,7 @@ one file (debpkg) has color support, and the other (debpkgnc) doesnt have colors
 
 # requirements
 + python 3.6 or 7 and higher
-+ requests, pip3install requests
++ requests, pip3 install requests
 + colorhex (**IF** using debpkg), pip3 install colorhex
 
 # how to use
