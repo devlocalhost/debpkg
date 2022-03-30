@@ -1,0 +1,40 @@
+#!/usr/bin/python
+
+from sys import argv
+
+try:
+    argv[1]
+
+except IndexError:
+    exit('No package provided to search (debpkg PKG-NAME)')
+
+from requests import get
+from colorhex import colorex, BOLD
+
+pkg = argv[1]
+resp = get(f'https://sources.debian.org/api/src/{pkg}/').json()
+
+try:
+    resp['package']
+
+except KeyError:
+    exit(colorex(f'Package "{pkg}" not found', 'f04947', BOLD))
+
+print(colorex(f"Package \"{resp['package']}\" available in:", '9F9494', BOLD))
+
+for datas in resp['versions']:
+    for dist in datas['suites']:
+        if dist == 'sid':
+            print(colorex(f"{', '.join(datas['suites'])} with version ", 'f04947', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+
+        elif dist == 'bookworm':
+            print(colorex(f"{', '.join(datas['suites'])} with version ", 'fdcc4b', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+
+        elif dist == 'bullseye':
+            print(colorex(f"{', '.join(datas['suites'])} with version ", '43b581', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+
+        elif dist == 'buster':
+            print(colorex(f"{', '.join(datas['suites'])} with version ", 'fa8231', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+
+        else:
+            print(colorex(f"{', '.join(datas['suites'])} with version ", '646464', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))

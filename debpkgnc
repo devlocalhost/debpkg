@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+from sys import argv
+
+try:
+    argv[1]
+
+except IndexError:
+    exit('No package provided to search (debpkg PKG-NAME)')
+
+from requests import get
+
+pkg = argv[1]
+resp = get(f'https://sources.debian.org/api/src/{pkg}/').json()
+
+try:
+    resp['package']
+
+except KeyError:
+    exit(f'Package "{pkg}" not found', 'f04947')
+
+print(f"Package \"{resp['package']}\" available in:")
+
+for datas in resp['versions']:
+    print(f"{', '.join(datas['suites'])} with version \"{datas['version']}\"")
