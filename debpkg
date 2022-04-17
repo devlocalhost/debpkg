@@ -25,16 +25,16 @@ print(colorex(f"Package \"{resp['package']}\" available in:", '9F9494', BOLD))
 for datas in resp['versions']:
     for dist in datas['suites']:
         if dist == 'sid':
-            print(colorex(f"{', '.join(datas['suites'])} with version ", 'f04947', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+            print(colorex(f"{', '.join(datas['suites'])} with version ", 'f04947', BOLD), end=colorex(f"\"{datas['version']}\"\n", '969696', BOLD))
 
         elif dist == 'bookworm':
-            print(colorex(f"{', '.join(datas['suites'])} with version ", 'fdcc4b', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+            print(colorex(f"{', '.join(datas['suites'])} with version ", 'fdcc4b', BOLD), end=colorex(f"\"{datas['version']}\"\n", '969696', BOLD))
 
         elif dist == 'bullseye':
-            print(colorex(f"{', '.join(datas['suites'])} with version ", '43b581', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+            print(colorex(f"{', '.join(datas['suites'])} with version ", '43b581', BOLD), end=colorex(f"\"{datas['version']}\"\n", '969696', BOLD))
 
         elif dist == 'buster':
-            print(colorex(f"{', '.join(datas['suites'])} with version ", 'fa8231', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+            print(colorex(f"{', '.join(datas['suites'])} with version ", 'fa8231', BOLD), end=colorex(f"\"{datas['version']}\"\n", '969696', BOLD))
 
         else:
-            print(colorex(f"{', '.join(datas['suites'])} with version ", '646464', BOLD), end=colorex(f"\"{datas['version']}\n", '969696', BOLD))
+            print(colorex(f"{', '.join(datas['suites'])} with version ", '646464', BOLD), end=colorex(f"\"{datas['version']}\"\n", '969696', BOLD))
